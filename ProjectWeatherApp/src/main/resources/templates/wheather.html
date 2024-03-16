@@ -10,11 +10,12 @@
 <h1 align="center">Hello! </h1>
 <h2 align="center">Please input the city and find out what the weather is like there</h2>
 <br/><br>
-<form action="wheather.html" method="post" align="center" >
+<form method="post" align="center" >
     <input type="text" name="city"/><br>
     <br/><br>
     <button type="submit" >Enter</button>
 </form>
-
+<br/><br>
+<p th:align="center" th:text="${city}"></p>
 </body>
 </html>

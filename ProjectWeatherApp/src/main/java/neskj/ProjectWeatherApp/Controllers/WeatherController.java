@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class WeatherController {
 
     @GetMapping("/wheather")
-    public String inputCity(@RequestParam(required = false) String city, Model page){
-        page.addAttribute("city",city);
+    public String getWhether(){
         return "wheather.html";
     }
 
+    @PostMapping("/wheather")
+    public String postWhether(@RequestParam String city, Model page){
+        page.addAttribute("city",city);
+        return "wheather.html";
+    }
 
 
 }
