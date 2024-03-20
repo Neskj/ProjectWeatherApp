@@ -1,5 +1,6 @@
 package neskj.ProjectWeatherApp.Controllers;
 
+import neskj.ProjectWeatherApp.Interfaces.Converter;
 import neskj.ProjectWeatherApp.Proxy.MessageProxy;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,16 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class RESTcontroller {
 
     private final MessageProxy messageProxy;
+    private final Converter converter;
 
-    RESTcontroller(MessageProxy messageProxy) {
+    RESTcontroller(MessageProxy messageProxy,Converter converter) {
+
         this.messageProxy = messageProxy;
+        this.converter=converter;
     }
 
     @GetMapping("/weather/get")
     public String sendToApi() {
 
         String request = messageProxy.proxySend();
-        System.out.println(request);
+        converter.convert(request);
         return request;
     }
 }
