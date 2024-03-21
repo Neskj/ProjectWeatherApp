@@ -1,6 +1,6 @@
 package neskj.ProjectWeatherApp.POJO;
 
-public class main {
+public class Weather {
 
        double temp;
        double feels_like;
