@@ -16,8 +16,8 @@ public class GSONconverter implements Converter {
     private Request request;
 
     @Override
-    public String convert(String json) {
-
+    public Request convert(String json) {
+        //take from endpoint
         System.out.println("JSON is come to ---->>> converter " + json);
 
         JSONParser parser = new JSONParser(json);
@@ -43,6 +43,7 @@ public class GSONconverter implements Converter {
                 .addTempMax(tMax.subtract(k).toString())
                 .build();
 
+        //Print parametres in log. Its for removing
 
         String cTemp=temp.subtract(k).toString();
         String cFeelsLike=feelsLike.subtract(k).toString();
@@ -53,7 +54,7 @@ public class GSONconverter implements Converter {
 
         System.out.println();
         System.out.println("___________________________");
-        System.out.println("Pogoda v Moscow:");
+        System.out.println("Pogoda :");
         System.out.println("___________________________");
         System.out.println("Temperatura ->>> "+cTemp);
         System.out.println("Oshushaetsja kak->>> "+cFeelsLike);
@@ -62,6 +63,6 @@ public class GSONconverter implements Converter {
 
 
 
-        return request.toString();
+        return request;
     }
 }

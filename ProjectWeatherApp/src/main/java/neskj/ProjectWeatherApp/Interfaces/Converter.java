@@ -4,5 +4,5 @@ import neskj.ProjectWeatherApp.POJO.Request;
 
 public interface Converter {
 
-    String convert(String json);
+    Request convert(String json);
 }

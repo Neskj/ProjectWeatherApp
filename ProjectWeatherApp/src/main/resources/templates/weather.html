@@ -6,7 +6,6 @@
 </head>
 <body bgcolor="#9932cc">
 <br/><br>
-<br/><br>
 <h1 align="center">Hello! </h1>
 <h2 align="center">Please input the city and find out what the weather is like there</h2>
 <br/><br>
@@ -17,6 +16,9 @@
 </form>
 <br/><br>
 <p style="font-size: 30px" th:align="center" th:text="${city}"></p>
-<p style="font-size: 30px" th:align="center" th:text="${request}"></p>
+<p style="font-size: 25px" th:align="center" th:text="${temp}"></p>
+<p style="font-size: 25px" th:align="center" th:text="${feelsLike}"></p>
+<p style="font-size: 25px" th:align="center" th:text="${tempMin}"></p>
+<p style="font-size: 25px" th:align="center" th:text="${tempMax}"></p>
 </body>
 </html>
