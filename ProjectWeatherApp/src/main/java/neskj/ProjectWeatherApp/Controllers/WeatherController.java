@@ -1,9 +1,13 @@
 package neskj.ProjectWeatherApp.Controllers;
 
+import feign.Feign;
+import feign.form.spring.SpringFormEncoder;
 import neskj.ProjectWeatherApp.Interfaces.Converter;
 import neskj.ProjectWeatherApp.POJO.Answer;
 import neskj.ProjectWeatherApp.POJO.Request;
 import neskj.ProjectWeatherApp.Proxy.MessageProxy;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +20,9 @@ public class WeatherController {
 
     private final MessageProxy messageProxy;
     private final Converter converter;
+    @Value("${app.key}")
+    private String key;
+
 
     WeatherController(MessageProxy messageProxy,Converter converter){
         this.messageProxy=messageProxy;
@@ -31,7 +38,10 @@ public class WeatherController {
     @PostMapping("/weather")
     public String postWhether(@RequestParam String city, Model page){
 
-        String json = messageProxy.proxySend();
+        MessageProxy proxyResourse= Feign.builder().encoder(new SpringFormEncoder())
+                                        .target(MessageProxy.class, "https://api.openweathermap.org");
+
+        String json = proxyResourse.proxySend(city,key);
         Request request=converter.convert(json);
 
         String temp= Answer.TEMP.getResponse() +request.getTemp();

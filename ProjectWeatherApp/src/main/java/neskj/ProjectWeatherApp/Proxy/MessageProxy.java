@@ -1,12 +1,15 @@
 package neskj.ProjectWeatherApp.Proxy;
 
+import feign.Param;
+import feign.RequestLine;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name="Feign", url="https://api.openweathermap.org")
+
 public interface MessageProxy {
 
-    @PostMapping("/data/2.5/weather?q=${app.city}&appid=${app.key}")
-    String proxySend();
+    @RequestLine("POST /data/2.5/weather?q={city}&appid={key}")
+    String proxySend(@Param String city,@Param String key);
 }
 
