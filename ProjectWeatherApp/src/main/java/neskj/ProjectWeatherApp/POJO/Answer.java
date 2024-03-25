@@ -8,11 +8,11 @@ public enum Answer {
 
     private final String response;
 
-    Answer(String response){
-        this.response=response;
+    Answer(String response) {
+        this.response = response;
     }
 
-    public String getResponse(){
+    public String getResponse() {
         return response;
     }
 
