@@ -1,9 +1,9 @@
 package neskj.ProjectWeatherApp.Controllers;
 
 import neskj.ProjectWeatherApp.Interfaces.Converter;
+import neskj.ProjectWeatherApp.POJO.Answer;
 import neskj.ProjectWeatherApp.POJO.Request;
 import neskj.ProjectWeatherApp.Proxy.MessageProxy;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class WeatherControllerTest {
@@ -22,7 +24,7 @@ public class WeatherControllerTest {
     @Mock
     private Converter converter;
     @Mock
-    private MessageProxy proxyResourse;
+    private MessageProxy proxy;
     @InjectMocks
     private WeatherController weatherController;
 
@@ -35,9 +37,12 @@ public class WeatherControllerTest {
 
 
 //здесь проблема с доступом через feign client, не могу замокать
-
+/*
     @Test
-    public void postWeatherHappyFlow(){
+    public void postWeatherHappyFlow() {
+
+        String cityRequest = "Balashikha";
+        String keyApi = "0e7345a38a23c62a0ec49aed8b1d049d";
 
         String json = "{\"coord\":{\"lon\":37.9581,\"lat\":55.8094},\"weather\":[{\"id\":804," +
                 "\"main\":\"Clouds\",\"description\":\"overcast clouds\",\"icon\":\"04d\"}]," +
@@ -55,10 +60,14 @@ public class WeatherControllerTest {
                 .addTempMax("14.11")
                 .build();
 
-
-
+        when(proxy.proxySend(cityRequest, keyApi)).thenReturn(json);
+        when(converter.convert(json)).thenReturn(executeRequest);
+        assertEquals("weather.html", weatherController.postWhether(cityRequest, page));
+        verify(page).addAttribute(Answer.TEMP.getResponse() + executeRequest.getTemp());
+        verify(page).addAttribute(Answer.FEELSLIKE.getResponse() + executeRequest.getFeelsLike());
+        verify(page).addAttribute(Answer.TEMPMIN.getResponse() + executeRequest.getTempMin());
+        verify(page).addAttribute(Answer.TEMPMAX.getResponse() + executeRequest.getTempMax());
     }
-
-
-
+    
+ */
 }
