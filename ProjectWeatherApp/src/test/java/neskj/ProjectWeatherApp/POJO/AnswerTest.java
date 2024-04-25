@@ -9,9 +9,9 @@ public class AnswerTest {
     @Test
     public void answerGettersTest() {
 
-        assertEquals("Temperature : ", Answer.TEMP.getResponse());
-        assertEquals("Feels like : ", Answer.FEELSLIKE.getResponse());
-        assertEquals("Temperature minimum : ", Answer.TEMPMIN.getResponse());
-        assertEquals("Temperature maximum : ", Answer.TEMPMAX.getResponse());
+        assertEquals("Температура : ", Answer.TEMP.getResponse());
+        assertEquals("Ощущается как : ", Answer.FEELSLIKE.getResponse());
+        assertEquals("Минимум : ", Answer.TEMPMIN.getResponse());
+        assertEquals("Максимум : ", Answer.TEMPMAX.getResponse());
     }
 }

@@ -1,10 +1,10 @@
 package neskj.ProjectWeatherApp.POJO;
 
 public enum Answer {
-    TEMP("Temperature : "),
-    FEELSLIKE("Feels like : "),
-    TEMPMIN("Temperature minimum : "),
-    TEMPMAX("Temperature maximum : ");
+    TEMP("Температура : "),
+    FEELSLIKE("Ощущается как : "),
+    TEMPMIN("Минимум : "),
+    TEMPMAX("Максимум : ");
 
     private final String response;
 
