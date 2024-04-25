@@ -1,5 +1,7 @@
 package neskj.ProjectWeatherApp.POJO;
 
+import java.util.Objects;
+
 public class Request {
 
     private String temp;
@@ -21,6 +23,22 @@ public class Request {
 
     public String getTempMax() {
         return tempMax;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Request request = (Request) o;
+        return Objects.equals(temp, request.temp) &&
+                Objects.equals(feelsLike, request.feelsLike) &&
+                Objects.equals(tempMin, request.tempMin) &&
+                Objects.equals(tempMax, request.tempMax);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(temp, feelsLike, tempMin, tempMax);
     }
 
     @Override

@@ -30,4 +30,15 @@ public class WeatherControllerTest {
     }
 
 
+//здесь проблема с доступом через feign client, не могу замокать
+
+    @Test
+    public void postWeatherHappyFlow(){
+
+
+
+    }
+
+
+
 }
