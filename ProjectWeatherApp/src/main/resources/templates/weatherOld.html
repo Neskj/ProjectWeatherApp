@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Page</title>
+</head>
+<body bgcolor="#9932cc">
+<br/><br>
+<h1 align="center">Hello! </h1>
+<h2 align="center">Please input the city and find out what the weather is like there</h2>
+<br/><br>
+<form method="post" align="center" >
+    <input type="text" name="city"/><br>
+    <br/><br>
+    <button type="submit" >Enter</button>
+</form>
+<br/><br>
+<p style="font-size: 30px" th:align="center" th:text="${city}"></p>
+<p style="font-size: 25px" th:align="center" th:text="${temp}"></p>
+<p style="font-size: 25px" th:align="center" th:text="${feelsLike}"></p>
+<p style="font-size: 25px" th:align="center" th:text="${tempMin}"></p>
+<p style="font-size: 25px" th:align="center" th:text="${tempMax}"></p>
+</body>
+</html>
