@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WeatherController {
 
-    private final MessageProxy messageProxy;
+    private MessageProxy proxyResourse;
     private final Converter converter;
     @Value("${app.key}")
     private String key;
 
     @Autowired
-    WeatherController(MessageProxy messageProxy,Converter converter){
-        this.messageProxy=messageProxy;
+    WeatherController(MessageProxy proxyResourse,Converter converter){
+        this.proxyResourse=proxyResourse;
         this.converter=converter;
     }
 
@@ -37,7 +37,7 @@ public class WeatherController {
     @PostMapping("/weather")
     public String postWhether(@RequestParam String city, Model page) {
 
-        MessageProxy proxyResourse = Feign.builder().encoder(new SpringFormEncoder())
+        proxyResourse = Feign.builder().encoder(new SpringFormEncoder())
                 .target(MessageProxy.class, "https://api.openweathermap.org");
         String json = proxyResourse.proxySend(city, key);
         Request request = converter.convert(json);
