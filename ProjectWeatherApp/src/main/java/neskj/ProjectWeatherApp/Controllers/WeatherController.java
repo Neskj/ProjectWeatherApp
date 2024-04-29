@@ -4,16 +4,14 @@ import feign.Feign;
 import feign.form.spring.SpringFormEncoder;
 import neskj.ProjectWeatherApp.Interfaces.Converter;
 import neskj.ProjectWeatherApp.POJO.Answer;
+import neskj.ProjectWeatherApp.POJO.City;
 import neskj.ProjectWeatherApp.POJO.Request;
 import neskj.ProjectWeatherApp.Proxy.MessageProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WeatherController {
@@ -52,12 +50,14 @@ public class WeatherController {
         page.addAttribute("tempMax", tempMax);
         return "weather.html";
     }
-   /*
-    @PostMapping("/whatweather")
+
+    //добавил чтоб тг бот мог подцепиться по Api
     @ResponseBody
-    public Request whatWeather(@RequestParam(required = false) String city){
+    @PostMapping("/whatweather")
+    public Request whatWeather(@RequestBody City city) {
 
+        String json = proxyResourse.proxySend(city.getCity(), key);
+        Request request = converter.convert(json);
+        return request;
     }
-
-    */
 }
